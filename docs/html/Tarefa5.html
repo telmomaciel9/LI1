@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Tarefa5</title><link href="linuwial.css" rel="stylesheet" type="text/css" title="Linuwial" /><link rel="stylesheet" type="text/css" href="quick-jump.css" /><link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" /><script src="haddock-bundle.min.js" async="async" type="text/javascript"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { processClass: "mathjax", ignoreClass: ".*" } });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script></head><body><div id="package-header"><span class="caption empty">&nbsp;</span><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul></div><div id="content"><div id="module-header"><table class="info"><tr><th valign="top">Copyright</th><td>Telmo Maciel &lt;a96569@alunos.uminho.pt&gt;;<br />Tiago Soares &lt;a97381@alunos.uminho.pt&gt;</td></tr><tr><th>Safe Haskell</th><td>None</td></tr></table><p class="caption">Tarefa5</p></div><div id="description"><p class="caption">Description</p><div class="doc"><h1>Introdu&#231;&#227;o</h1><p>A tarefa 5 &#233; a tarefa onde fazemos com que os fantasmas persigam o pacman caso estejam vivos. Caso contr&#225;rio,
+faz com que os fantasmas fujam.</p><h1>Objetivos</h1><p>Nesta tarefa o objetivo era implementar um movimento para os fantasmas, e, antes de tudo, tinhamos de alterar
+a fun&#231;&#227;o play da tarefa 2, coisa que j&#225; modificamos ao mesmo tempo que fizemos as altera&#231;&#245;es da tarefa 4.</p><p>O nosso principal objetivo foi fazer com que os fantasmas assumissem um comportamento inteligente, perseguindo 
+o pacman, ou fugindo no caso deste estar em modo Mega.</p><p>Primeiro de tudo separamos as ideias em dois casos, o caso do pacman estar em modo Mega e o caso que ele esteja
+em modo Normal. Para o segundo caso fizemos uma coisa mais simples, isto &#233;, primeiro de tudo, quando o pacman 
+passasse numa casa com comida grande (quando se transforma em Mega) o nosso ghost vai mudar a orienta&#231;&#227;o dele em 
+180 graus, como por exemplo, se ele estivesse a andar para a direita no momento imediatamente antes do pacman comer
+a comida grande, o nosso ghost passaria a deslocar-se para a esquerda e a mesma coisa para as outras orienta&#231;&#245;es e,
+depois disto, sempre que ele encontrasse uma parede passaria a deslocar-se para a sua direita at&#233; acontecer o mesmo
+novamente.</p><p>Agora para o caso do pacman estar em modo Normal o nosso pensamento foi completamente diferente. Neste caso, o 
+que n&#243;s fizemos foi analisar as duas coordenadas (as do pacman e as do fantasma) e, com isto, obter o melhor movimento
+poss&#237;vel a realizar, por exemplo, se o nosso ghost se encontrasse imediatamente abaixo do pacman, a nossa fun&#231;ao ia 
+analisar as coordenadas e determinar se o nosso ghost se iria mover para cima ou para baixo e assim para todas as outras
+situa&#231;&#245;es.</p><h1>Discuss&#227;o e Conclus&#227;o</h1><p>Apesar de esta tarefa ter parecido f&#225;cil inicialmente, ao longo desta tivemos v&#225;rios problemas a resolver visto 
+que havia v&#225;rias alternativas a tomar tendo em contas as coordenadas dos dois players. Apesar de surgirem v&#225;rios 
+erros nas fun&#231;&#245;es ao longo do desenvolvimento das mesmas fomos conseguindo corrigir e terminar a tarefa.</p><p>Em conclus&#227;o, penso que a fun&#231;&#227;o <code><a href="Tarefa5.html#v:scatterMode" title="Tarefa5">scatterMode</a></code> (fun&#231;&#227;o que faz o ghost fugir do pacman) tenha ficado sem qualquer 
+tipo de erro, visto que a fun&#231;&#227;o era muito mais simples que a fun&#231;&#227;o <code><a href="Tarefa5.html#v:chaseMode" title="Tarefa5">chaseMode</a></code> (fun&#231;&#227;o que vai atr&#225;s dos pacmans), 
+isto porque a segunda vai ter muitos mais casos a analisar.</p><p>Em rela&#231;&#227;o &#224; segunda fun&#231;&#227;o, fazendo os testes por n&#243;s a fun&#231;&#227;o pareceu estar bem constru&#237;da e eficaz, apesar de
+ter levado tempo at&#233; chegar ao final da mesma (devido aos erros anteriormente referidos). </p><p>Por fim, resta-nos salientar que esta foi a melhor forma que conseguimos realizar a tarefa e, apesar de termos 
+testado de v&#225;rias formas diferentes, temos no&#231;&#227;o que possam ter ficado casos por cobrir, coisa que mais tarde, depois
+de surgirem os erros, se pode corrigir sem probelmas.</p></div></div><div id="synopsis"><details id="syn"><summary>Synopsis</summary><ul class="details-toggle" data-details-id="syn"><li class="src short"><a href="#v:scatterMode">scatterMode</a> :: <a href="Types.html#t:State" title="Types">State</a> -&gt; Int -&gt; <a href="Types.html#t:Play" title="Types">Play</a></li><li class="src short"><a href="#v:auxScatter">auxScatter</a> :: Int -&gt; <a href="Types.html#t:Orientation" title="Types">Orientation</a> -&gt; <a href="Types.html#t:Play" title="Types">Play</a></li><li class="src short"><a href="#v:chaseMode">chaseMode</a> :: <a href="Types.html#t:State" title="Types">State</a> -&gt; Int -&gt; <a href="Types.html#t:Play" title="Types">Play</a></li><li class="src short"><a href="#v:isGhostAlive">isGhostAlive</a> :: <a href="Types.html#t:Player" title="Types">Player</a> -&gt; <a href="Types.html#t:Player" title="Types">Player</a> -&gt; <a href="Types.html#t:State" title="Types">State</a> -&gt; <a href="Types.html#t:Play" title="Types">Play</a></li><li class="src short"><a href="#v:ghostPlay">ghostPlay</a> :: <a href="Types.html#t:State" title="Types">State</a> -&gt; [<a href="Types.html#t:Play" title="Types">Play</a>]</li></ul></details></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a id="v:scatterMode" class="def">scatterMode</a> :: <a href="Types.html#t:State" title="Types">State</a> -&gt; Int -&gt; <a href="Types.html#t:Play" title="Types">Play</a> <a href="#v:scatterMode" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o vai receber um estado e o ID do jogador e vai devolver a jogada que esse jogador vai fazer para fugir do pacman. </p><pre>scatterMode :: State -&gt; Int -&gt; Play
+scatterMode s@(State m ms l) id 
+   | nextPiece ori player m == Wall = auxScatter id ori 
+   | otherwise= (Move id ori) 
+       where  ori =getPlayerOrientation (getPlayer id ms)
+              player = (getPlayer id ms)
+</pre></div></div><div class="top"><p class="src"><a id="v:auxScatter" class="def">auxScatter</a> :: Int -&gt; <a href="Types.html#t:Orientation" title="Types">Orientation</a> -&gt; <a href="Types.html#t:Play" title="Types">Play</a> <a href="#v:auxScatter" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o &#233; apenas uma auxiliar da <code><a href="Tarefa5.html#v:scatterMode" title="Tarefa5">scatterMode</a></code>.</p><pre>auxScatter :: Int -&gt; Orientation -&gt; Play
+auxScatter id ori 
+   | ori==R = (Move id D)
+   | ori==L = (Move id U)
+   | ori==D = (Move id L)
+   | ori==U = (Move id R)
+</pre></div></div><div class="top"><p class="src"><a id="v:chaseMode" class="def">chaseMode</a> :: <a href="Types.html#t:State" title="Types">State</a> -&gt; Int -&gt; <a href="Types.html#t:Play" title="Types">Play</a> <a href="#v:chaseMode" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o vai receber o estado do jogo e o ID do ghost e vai devolver a jogada que esse fantasma tem que fazer para apanhar o pacman.</p><pre>chaseMode :: State -&gt; Int -&gt; Play
+chaseMode s@(State m ms l) id = isGhostAlive pac (head lista) s
+  where pac= whereIsPacman ms
+        lista= whereAreGhosts ms
+</pre></div></div><div class="top"><p class="src"><a id="v:isGhostAlive" class="def">isGhostAlive</a> :: <a href="Types.html#t:Player" title="Types">Player</a> -&gt; <a href="Types.html#t:Player" title="Types">Player</a> -&gt; <a href="Types.html#t:State" title="Types">State</a> -&gt; <a href="Types.html#t:Play" title="Types">Play</a> <a href="#v:isGhostAlive" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o analisa as coordenadas do pacman e do ghost e devolve o movimento que o fantasma precisa de executar para apanhar o pacman.</p><pre>isGhostAlive :: Player -&gt; Player -&gt; State -&gt; Play
+isGhostAlive (Pacman (PacState (i,(b,c), x, y,z,l) h f Dying)) (Ghost(GhoState (i1,(b1,c1), x1, y1,z1,l1) Alive)) s<code>(State m ms lvl)= (Move i1 Null)
+isGhostAlive (Pacman (PacState (i,(b,c), x, y,z,l) h f mode)) (Ghost(GhoState (i1,(b1,c1), x1, y1,z1,l1) Alive)) s</code>(State m ms lvl)
+   | (b1,c1)==((div(length (m)) 2),(div (length (head m)) 2))= (Move i1 U)
+   | (b1,c1)==((div(length (m)) 2)-1,(div (length (head m)) 2))= (Move i1 U)
+   | b1==b &amp;&amp; c1==c = (Move i1 Null)
+   | y1==R &amp;&amp; getPiece (b1,c1+1) m == Wall = if b&lt;b1 then (Move i1 U) else (Move i1 D) 
+   | y1==L &amp;&amp; getPiece (b1,c1-1) m == Wall = if b&lt;b1 then (Move i1 U) else (Move i1 D) 
+   | y1==U &amp;&amp; getPiece (b1-1,c1) m == Wall = if c&lt;c1 then (Move i1 L) else (Move i1 R) 
+   | y1==D &amp;&amp; getPiece (b1+1,c1) m == Wall = if c&lt;c1 then (Move i1 L) else (Move i1 R) 
+   | y1==R &amp;&amp; getPiece (b1,c1+1) m == Wall = if b&gt;b1 then (Move i1 D) else (Move i1 U) 
+   | y1==L &amp;&amp; getPiece (b1,c1-1) m == Wall = if b&gt;b1 then (Move i1 D) else (Move i1 U) 
+   | y1==U &amp;&amp; getPiece (b1-1,c1) m == Wall = if c&gt;c1 then (Move i1 R) else (Move i1 L) 
+   | y1==D &amp;&amp; getPiece (b1+1,c1) m == Wall = if c&gt;c1 then (Move i1 R) else (Move i1 L) 
+   | c==c1 &amp;&amp; b&lt;b1 = (Move i1 U) 
+   | c==c1 &amp;&amp; b&gt;b1 = (Move i1 D)  
+   | b==b1 &amp;&amp; c&lt;c1 = (Move i1 L)  
+   | b==b1 &amp;&amp; c&gt;c1 = (Move i1 R) 
+   | y1==R = (Move i1 R)
+   | y1==L = (Move i1 L)
+   | y1==U = (Move i1 U) 
+   | y1==D = (Move i1 D)
+   | y1==Null = (Move i1 D) 
+</pre></div></div><div class="top"><p class="src"><a id="v:ghostPlay" class="def">ghostPlay</a> :: <a href="Types.html#t:State" title="Types">State</a> -&gt; [<a href="Types.html#t:Play" title="Types">Play</a>] <a href="#v:ghostPlay" class="selflink">#</a></p><div class="doc"><p>Por fim, esta vai receber um estado e devolve automaticamente todos os movimentos que os fantasmas v&#227;o fazer, quer seja para apanhar o pacman quer seja para fugir do mesmo.</p><pre>ghostPlay :: State -&gt; [Play]
+ghostPlay s<code>(State m [x] l)= if isPacman x then [] else []
+ghostPlay s</code>(State m ms l) 
+   | getGhostMode (head lista)== Dead  = scatterMode s (getPlayerID (head lista)) : ghostPlay remove
+   | getGhostMode (head lista)== Alive = chaseMode s x : ghostPlay remove
+      where lista= whereAreGhosts ms
+            pac = whereIsPacman ms
+            remove = removePlayerFromState (head lista) s
+            x= getPlayerID (head lista)
+</pre></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.23.0</p></div></body></html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Tarefa3</title><link href="linuwial.css" rel="stylesheet" type="text/css" title="Linuwial" /><link rel="stylesheet" type="text/css" href="quick-jump.css" /><link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" /><script src="haddock-bundle.min.js" async="async" type="text/javascript"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { processClass: "mathjax", ignoreClass: ".*" } });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script></head><body><div id="package-header"><span class="caption empty">&nbsp;</span><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul></div><div id="content"><div id="module-header"><table class="info"><tr><th valign="top">Copyright</th><td>Telmo Maciel &lt;a96569@alunos.uminho.pt&gt;;<br />Tiago Soares &lt;a97381@alunos.uminho.pt&gt;</td></tr><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">Tarefa3</p></div><div id="description"><p class="caption">Description</p><div class="doc"><h1>Introdu&#231;&#227;o</h1><p>Nesta tarefa t&#237;nhamos de compactar as intru&#231;&#245;es de forma a criar labirintos de uma forma fragmentada.</p><h1>Objetivos</h1><p>Come&#231;amos por &quot;organizar&quot; o formato de labirinto a que estav&#225;mos habituados de diferente forma. Ap&#243;s
+isso, conseguimos agrupar &quot;pe&#231;as&quot; do labirinto iguais, compactando todo o processo. Depois, foi uma
+quest&#227;o de manter o racioc&#237;nio e continuar o agrupamento, chegando a agrupar v&#225;rios corredores iguais,
+por exemplo.</p><h1>Discuss&#227;o e Conclus&#227;o</h1><p>Na nossa resolu&#231;&#227;o da tarefa o essencial foi perceber a mec&#226;nica que estava a ser pedida. Assim que
+os princ&#237;pios fundamentais foram cobertos, fomos expandindo a forma de pensar e resolvendo de forma
+simples a compacta&#231;&#227;o.</p><p>Ao longo deste m&#243;dulo &#233; usado o mesmo exemplo, para uma interpreta&#231;&#227;o mais f&#225;cil das fun&#231;&#245;es.</p></div></div><div id="synopsis"><details id="syn"><summary>Synopsis</summary><ul class="details-toggle" data-details-id="syn"><li class="src short"><a href="#v:convertToIntPiece">convertToIntPiece</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; [[(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)]]</li><li class="src short"><a href="#v:aux1Corridor">aux1Corridor</a> :: <a href="Types.html#t:Corridor" title="Types">Corridor</a> -&gt; [(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)]</li><li class="src short"><a href="#v:shortCorridor">shortCorridor</a> :: [[(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)]] -&gt; [[(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)]]</li><li class="src short"><a href="#v:auxSameCorridor">auxSameCorridor</a> :: [(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)] -&gt; [(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)]</li><li class="src short"><a href="#v:sameIndex">sameIndex</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; [Int]</li><li class="src short"><a href="#v:checkSameCorridors">checkSameCorridors</a> :: Int -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a> -&gt; Int</li><li class="src short"><a href="#v:convertToInstructions">convertToInstructions</a> :: Int -&gt; [[(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)]] -&gt; [Int] -&gt; <a href="Types.html#t:Instructions" title="Types">Instructions</a></li><li class="src short"><a href="#v:compactMaze">compactMaze</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Instructions" title="Types">Instructions</a></li></ul></details></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a id="v:convertToIntPiece" class="def">convertToIntPiece</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; [[(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)]] <a href="#v:convertToIntPiece" class="selflink">#</a></p><div class="doc"><p>De modo a iniciar a tarefa, usamos um labirinto e transformamos todas as suas pe&#231;as num tuplo (Int,Piece):</p><pre>convertToIntPiece :: Maze -&gt; [[(Int,Piece)]]
+convertToIntPiece [] = []
+convertToIntPiece (h:t)=   [aux1Corridor h]  ++ convertToIntPiece t
+</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>convertToIntPiece [[Wall,Wall,Wall,Wall,Wall]]
+</code></strong>[[(1,#),(1,#),(1,#),(1,#),(1,#)]]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>convertToIntPiece [[Wall,Wall,Wall],[Wall,Food Big,Wall],[Wall,Wall,Wall]]
+</code></strong>[[(1,#),(1,#),(1,#)],[(1,#),(1,o),(1,#)],[(1,#),(1,#),(1,#)]]
+</pre></div></div><div class="top"><p class="src"><a id="v:aux1Corridor" class="def">aux1Corridor</a> :: <a href="Types.html#t:Corridor" title="Types">Corridor</a> -&gt; [(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)] <a href="#v:aux1Corridor" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o serve como auxiliar da anterior, apenas recebe um corredor e devolve o mesmo j&#225; no formato (Int,Piece).</p><pre>aux1Corridor :: Corridor -&gt; [(Int,Piece)]
+aux1Corridor [] = []
+aux1Corridor (h:t) 
+  | h==Wall = (1,Wall) : aux1Corridor t
+  | h==Empty = (1,Empty) : aux1Corridor t
+  | h==Food Little = (1,Food Little) : aux1Corridor t
+  | h==Food Big = (1,Food Big) : aux1Corridor t
+</pre><h2>Exemplos de utiliza&#231;&#227;o (no caso do segundo exemplo dado anteriormente):</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>aux1Corridor [Wall,Wall,Wall]
+</code></strong>[(1,#),(1,#),(1,#)]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>aux1Corridor [Wall,Food Big,Wall]
+</code></strong>[(1,#),(1,o),(1,#)]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>aux1Corridor [Wall,Wall,Wall]
+</code></strong>[(1,#),(1,#),(1,#)]
+</pre></div></div><div class="top"><p class="src"><a id="v:shortCorridor" class="def">shortCorridor</a> :: [[(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)]] -&gt; [[(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)]] <a href="#v:shortCorridor" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o recebe um labirinto e verifica se existem tuplos seguidos iguais dentro de um corredor, nesse caso junta-os.</p><pre>shortCorridor :: [[(Int,Piece)]] -&gt; [[(Int,Piece)]]
+shortCorridor [] = []
+shortCorridor (h:t) = [auxSameCorridor h] ++ shortCorridor t
+</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>shortCorridor [[(1,Wall),(1,Wall),(1,Wall)],[(1,Wall),(1,Food Big),(1,Wall)],[(1,Wall),(1,Wall),(1,Wall)]]
+</code></strong>[[(3,#)],[(1,#),(1,o),(1,#)],[(3,#)]]
+</pre></div></div><div class="top"><p class="src"><a id="v:auxSameCorridor" class="def">auxSameCorridor</a> :: [(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)] -&gt; [(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)] <a href="#v:auxSameCorridor" class="selflink">#</a></p><div class="doc"><p>A <code><a href="Tarefa3.html#v:auxSameCorridor" title="Tarefa3">auxSameCorridor</a></code> funciona apenas como auxiliar &#224; fun&#231;&#227;o <code><a href="Tarefa3.html#v:shortCorridor" title="Tarefa3">shortCorridor</a></code> mas faz o processo corredor a corredor.</p><pre>auxSameCorridor :: [(Int,Piece)] -&gt; [(Int,Piece)]
+auxSameCorridor [] = []
+auxSameCorridor [(a,b)] = [(a,b)]
+auxSameCorridor ((a,b):(c,d):t)
+  | b==d = auxSameCorridor ((a+c,d):t)
+  | b/=d = (a,b) : auxSameCorridor ((c,d):t)
+</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>shortCorridor [[(1,Wall),(1,Wall),(1,Wall)]]
+</code></strong>[[(3,#)]]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>shortCorridor [[(1,Wall),(1,Food Big),(1,Wall)]]
+</code></strong>[(1,#),(1,o),(1,#)]
+</pre></div></div><div class="top"><p class="src"><a id="v:sameIndex" class="def">sameIndex</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; [Int] <a href="#v:sameIndex" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o recebe o labirinto dado inicialmente e resulta num conjunto de n&#250;meros inteiros em que, caso haja repeti&#231;&#227;o de corredores, apresenta os mesmos com o indice do primeiro que surgiu. Reparemos nos exemplos mais abaixo:</p><pre>sameIndex :: Maze -&gt; Maze -&gt; [Int]
+sameIndex [] _ = []
+sameIndex (h:t) m = (checkSameCorridors 0 m h): sameIndex t m 
+</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>sameIndex [[Wall,Wall,Wall],[Wall,Food Big,Wall],[Wall,Wall,Wall]] [[Wall,Wall,Wall],[Wall,Food Big,Wall],[Wall,Wall,Wall]]
+</code></strong>[0,1,0,0,1,0]
+(Neste caso, o segundo 0 significa a repeti&#231;&#227;o do corredor de &#237;ndice 0)
+</pre></div></div><div class="top"><p class="src"><a id="v:checkSameCorridors" class="def">checkSameCorridors</a> :: Int -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a> -&gt; Int <a href="#v:checkSameCorridors" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o &#233; a parte essencial da anterior, uma vez que esta, dado um corredor, verifica se este se repete ao longo do labirinto e, no fim, apresenta-os com o mesmo indice.</p><pre>checkSameCorridors :: Int -&gt; Maze -&gt; Corridor -&gt; Int
+checkSameCorridors c [] _ = c
+checkSameCorridors c (h:t) d
+  |auxcheckSame h d = c
+  |otherwise= checkSameCorridors (c+1) t d
+      where auxcheckSame [] [] = True
+            auxcheckSame (h1:t1) (h2:t2)
+                |h1==h2 = auxcheckSame t1 t2
+                |otherwise= False 
+</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>checkSameCorridors 0 [[Wall,Wall,Wall],[Wall,Food Big,Wall],[Wall,Wall,Wall]] [Wall,Wall,Wall]
+</code></strong>0
+</pre></div></div><div class="top"><p class="src"><a id="v:convertToInstructions" class="def">convertToInstructions</a> :: Int -&gt; [[(Int, <a href="Types.html#t:Piece" title="Types">Piece</a>)]] -&gt; [Int] -&gt; <a href="Types.html#t:Instructions" title="Types">Instructions</a> <a href="#v:convertToInstructions" class="selflink">#</a></p><div class="doc"><p>A fun&#231;&#227;o <code><a href="Tarefa3.html#v:convertToInstructions" title="Tarefa3">convertToInstructions</a></code> recebe um contador, o labirinto j&#225; no formato de tuplos (Int,Piece) e a lista dos n&#250;meros inteiros obtidos nas fun&#231;&#245;es anteriores e, dado isto, converte o labirinto num conjunto de instru&#231;&#245;es.</p><pre>convertToInstructions :: Int -&gt; [[(Int,Piece)]] -&gt; [Int] -&gt; Instructions
+convertToInstructions _ _ [] = []
+convertToInstructions c maze (h:t)
+  | c==h = [Instruct (head maze)] ++ convertToInstructions (c+1) (tail maze) t
+  | otherwise= Repeat h: convertToInstructions (c+1) (tail maze) t
+</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>convertToInstructions 0 [[(3,Wall)],[(1,Wall),(1,Food Big),(1,Wall)],[(3,Wall)]] [0,1,0]
+</code></strong>[Instruct [(3,#)],Instruct [(1,#),(1,o),(1,#)],Repeat 0]
+</pre></div></div><div class="top"><p class="src"><a id="v:compactMaze" class="def">compactMaze</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Instructions" title="Types">Instructions</a> <a href="#v:compactMaze" class="selflink">#</a></p><div class="doc"><p>Por fim, resta juntar todas estas fun&#231;&#245;es, para ser poss&#237;vel fazer todos estes passos utlizando apenas uma fun&#231;&#227;o (<code><a href="Tarefa3.html#v:compactMaze" title="Tarefa3">compactMaze</a></code>):</p><pre>compactMaze :: Maze -&gt; Instructions
+compactMaze maze = convertToInstructions 0 (shortCorridor (convertToIntPiece maze)) (sameIndex maze maze)
+</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>compactMaze [[Wall,Wall,Wall],[Wall,Food Big,Wall],[Wall,Wall,Wall]]
+</code></strong>[Instruct [(3,#)],Instruct [(1,#),(1,o),(1,#)],Repeat 0]
+</pre></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.23.0</p></div></body></html>

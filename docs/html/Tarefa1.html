@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Tarefa1</title><link href="linuwial.css" rel="stylesheet" type="text/css" title="Linuwial" /><link rel="stylesheet" type="text/css" href="quick-jump.css" /><link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" /><script src="haddock-bundle.min.js" async="async" type="text/javascript"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { processClass: "mathjax", ignoreClass: ".*" } });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script></head><body><div id="package-header"><span class="caption empty">&nbsp;</span><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul></div><div id="content"><div id="module-header"><table class="info"><tr><th valign="top">Copyright</th><td>Telmo Maciel &lt;a96569@alunos.uminho.pt&gt;;<br />Tiago Soares &lt;a97381@alunos.uminho.pt&gt;</td></tr><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">Tarefa1</p></div><div id="description"><p class="caption">Description</p><div class="doc"><h1>Introdu&#231;&#227;o</h1><p>Na tarefa 1 exploramos a ideia de criar labirintos. Foi uma tarefa importante para come&#231;ar
+a projetar todo o resto do jogo.</p><h1>Objetivos</h1><p>O nosso objetivo era criar labirintos aleat&#243;rios dadas as medidas dos mesmos. Seguimos um racioc&#237;nio
+l&#243;gico e fomos desenvolvendo tudo a partir da&#237;. Come&#231;ando com conjuntos (paredes, corredores...) e fomos
+projetando o que se tornaria o labirinto. Na nossa forma de pensar, quer&#237;amos fazer com que a casa dos
+fantasmas (constru&#237;da &#224; parte) encaixasse no labirinto. Para isso, recorremos a uma fun&#231;&#227;o que identificava
+o centro do labirinto e constru&#237;mos a partir da&#237;. Fomos adicionando tudo o resto sequencialmente e por
+necessidade, como espa&#231;os em branco no s&#237;tios do t&#250;neis ou as paredes em volta do labirinto.</p><h1>Discuss&#227;o e Conclus&#227;o</h1><p>Cremos que fizemos um bom trabalho nesta tarefa, utilizamos recioc&#237;nios originais e fomos adaptando tudo
+de modo a chegar ao resultado pretendido.</p></div></div><div id="synopsis"><details id="syn"><summary>Synopsis</summary><ul class="details-toggle" data-details-id="syn"><li class="src short"><a href="#v:generateWall">generateWall</a> :: Int -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a></li><li class="src short"><a href="#v:generateMaze-39--39-">generateMaze''</a> :: Int -&gt; Int -&gt; Int -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a></li><li class="src short"><a href="#v:attachWallToMaze">attachWallToMaze</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a></li><li class="src short"><a href="#v:ghostHouse">ghostHouse</a> :: Int -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a></li><li class="src short"><a href="#v:get5MiddleCorridor">get5MiddleCorridor</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; [<a href="Types.html#t:Corridor" title="Types">Corridor</a>]</li><li class="src short"><a href="#v:replaceCorridor">replaceCorridor</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a></li><li class="src short"><a href="#v:replaceCorridorAux">replaceCorridorAux</a> :: Int -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a> -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a> -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a></li><li class="src short"><a href="#v:insertGhosHouse">insertGhosHouse</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a></li><li class="src short"><a href="#v:mazeWithGhostHouse">mazeWithGhostHouse</a> :: Int -&gt; Int -&gt; Int -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a></li><li class="src short"><a href="#v:placeSideWalls">placeSideWalls</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; [<a href="Types.html#t:Corridor" title="Types">Corridor</a>]</li><li class="src short"><a href="#v:mazeTunel">mazeTunel</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a></li><li class="src short"><a href="#v:generateMaze">generateMaze</a> :: Int -&gt; Int -&gt; Int -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a></li><li class="src short"><a href="#v:printMazeFinal">printMazeFinal</a> :: Int -&gt; Int -&gt; Int -&gt; IO ()</li></ul></details></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a id="v:generateWall" class="def">generateWall</a> :: Int -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a> <a href="#v:generateWall" class="selflink">#</a></p><div class="doc"><p>A fun&#231;&#227;o <code><a href="Tarefa1.html#v:generateWall" title="Tarefa1">generateWall</a></code> cria um corredor feito s&#243; de paredes.</p><p>A fun&#231;&#227;o &#233; definida da seguinte forma:</p><pre>generateWall :: Int -&gt; Corridor
+generateWall 0 = []
+generateWall x = Wall : generateWall (x-1)
+</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>generateWall 5
+</code></strong>[#,#,#,#,#]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>generateWall 10
+</code></strong>[#,#,#,#,#,#,#,#,#,#]
+</pre></div></div><div class="top"><p class="src"><a id="v:generateMaze-39--39-" class="def">generateMaze''</a> :: Int -&gt; Int -&gt; Int -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> <a href="#v:generateMaze-39--39-" class="selflink">#</a></p><div class="doc"><p>A fun&#231;ao generateMaze''  gera um labirinto totalmente aleat&#243;rio, com paredes em cima e em baixo do mesmo.</p><p>Esta fun&#231;&#227;o necessita de uma segunda, que faz com que seja poss&#297;vel unir um corredor s&#243; de paredes ao resto do labirinto gerado pela pr&#243;pria fun&#231;&#227;o.</p><p>A fun&#231;&#227;o generateMaze'' &#233; definida da seguinte forma:</p><pre>generateMaze'' :: Int -&gt; Int -&gt; Int -&gt; Maze
+generateMaze'' l a s = attachWallToMaze ( (generateWall l) : (geraLabirinto l (a-2) s)) (generateWall l) 
+</pre></div></div><div class="top"><p class="src"><a id="v:attachWallToMaze" class="def">attachWallToMaze</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> <a href="#v:attachWallToMaze" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o, como dito anteriormente, faz com que seja poss&#237;vel a uni&#227;o dos v&#225;rios corredores.</p><pre>attachWallToMaze :: Maze-&gt; Corridor -&gt; Maze
+attachWallToMaze [] c = [c]
+attachWallToMaze (x:xs) c = x : attachWallToMaze xs c
+</pre></div></div><div class="top"><p class="src"><a id="v:ghostHouse" class="def">ghostHouse</a> :: Int -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> <a href="#v:ghostHouse" class="selflink">#</a></p><div class="doc"><p>A seguinte fun&#231;&#227;o recebe um n&#250;mero inteiro (futuramente a largura do labirinto) e d&#225; como resultado a casa dos fantasmas:</p><pre>ghostHouse :: Int -&gt; Maze
+ghostHouse i 
+  | even i = [ [Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty],  (No caso de ser dado um n&#250;mero par)
+               [Empty,Wall,Wall,Wall,Empty,Empty,Wall,Wall,Wall,Empty], 
+               [Empty,Wall,Empty,Empty,Empty,Empty,Empty,Empty,Wall,Empty],
+               [Empty,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Empty], 
+               [Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty]]  
+  | otherwise = [ [Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty],  (No caso de ser dado um n&#250;mero &#237;mpar)
+                  [Empty,Wall,Wall,Wall,Empty,Empty,Empty,Wall,Wall,Wall,Empty],
+                  [Empty,Wall,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Wall,Empty],
+                  [Empty,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Empty],
+                  [Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty] ] 
+</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>ghostHouse 24
+</code></strong>[[Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty],  
+ [Empty,Wall,Wall,Wall,Empty,Empty,Wall,Wall,Wall,Empty], 
+ [Empty,Wall,Empty,Empty,Empty,Empty,Empty,Empty,Wall,Empty],
+ [Empty,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Empty], 
+ [Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty]]  
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>ghostHouse 35
+</code></strong>[[Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty], 
+ [Empty,Wall,Wall,Wall,Empty,Empty,Empty,Wall,Wall,Wall,Empty],
+ [Empty,Wall,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Wall,Empty],
+ [Empty,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Empty],
+ [Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty,Empty] ] 
+</pre></div></div><div class="top"><p class="src"><a id="v:get5MiddleCorridor" class="def">get5MiddleCorridor</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; [<a href="Types.html#t:Corridor" title="Types">Corridor</a>] <a href="#v:get5MiddleCorridor" class="selflink">#</a></p><div class="doc"><p>Para come&#231;ar o processo de colocar a casa dos fantasmas no centro do labirinto gerado, optamos por obter os 5 corredores centrais do labirinto. 
+Para tal, criamos uma fun&#231;&#227;o para esse prop&#243;sito.</p><pre>get5MiddleCorridor :: Maze -&gt; [Corridor]
+get5MiddleCorridor generateMaze''
+    | even m = [b!!(d-3),b!!(d-2),b!!(d-1),b!!d,b!!(d+1)]
+    | otherwise = [b!!(d-2),b!!(d-1),b!!(d),b!!(d+1),b!!(d+2)]
+        where m = length generateMaze''        
+              b = generateMaze''
+              d = (div m 2)
+</pre></div></div><div class="top"><p class="src"><a id="v:replaceCorridor" class="def">replaceCorridor</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> <a href="#v:replaceCorridor" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o recebe dois labirintos e faz as substitui&#231;&#245;es nos seus corredores.</p><pre>replaceCorridor :: Maze -&gt; Maze -&gt; Maze
+replaceCorridor _ [] = []
+replaceCorridor [] _ = []
+replaceCorridor (l:ls) (y:ys) = replaceCorridorAux e l y : replaceCorridor ls ys
+  where e= (div (length y) 2)-5
+</pre></div></div><div class="top"><p class="src"><a id="v:replaceCorridorAux" class="def">replaceCorridorAux</a> :: Int -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a> -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a> -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a> <a href="#v:replaceCorridorAux" class="selflink">#</a></p><div class="doc"><p>A pr&#243;xima fun&#231;&#227;o &#233; utilizada como auxiliar da anterior, mas s&#243; utiliza corredores.</p><p>Esta fun&#231;&#227;o recebe dois corredores e, dado um &#237;ndice, substitui um corredor no centro de outro.</p><pre>replaceCorridorAux :: Int -&gt; Corridor -&gt; Corridor -&gt; Corridor
+replaceCorridorAux 0 (l:ls) x = l : replaceCorridorAux 0 ls (tail x)
+replaceCorridorAux _ [] l = l
+replaceCorridorAux n (x:xs) (y:ys) = y : replaceCorridorAux (n-1) (x:xs) ys
+</pre></div></div><div class="top"><p class="src"><a id="v:insertGhosHouse" class="def">insertGhosHouse</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> <a href="#v:insertGhosHouse" class="selflink">#</a></p><div class="doc"><p>A pr&#243;xima fun&#231;&#227;o recebe como primeiro argumento o labirinto e como segundo os 5 corredores j&#225; substituidos, devolvendo o labirinto completo.</p><pre>insertGhosHouse :: Maze -&gt; Maze -&gt; Maze
+insertGhosHouse generateMaze'' replaceCorridor 
+  | even b = take (c-3) (generateMaze'') ++ replaceCorridor ++ drop (c+2) (generateMaze'')
+  | otherwise = take (c-2) (generateMaze'') ++ replaceCorridor ++ drop (c+3) (generateMaze'')
+     where b= length generateMaze'' 
+           c = (div b 2)
+</pre></div></div><div class="top"><p class="src"><a id="v:mazeWithGhostHouse" class="def">mazeWithGhostHouse</a> :: Int -&gt; Int -&gt; Int -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> <a href="#v:mazeWithGhostHouse" class="selflink">#</a></p><div class="doc"><p>A fun&#231;&#227;o <code><a href="Tarefa1.html#v:mazeWithGhostHouse" title="Tarefa1">mazeWithGhostHouse</a></code> recebe 3 n&#250;meros inteiros, nomeadamente uma largura, altura e seed e devolve um labirinto com a casa dos fantasmas j&#225; inserida.</p><pre>mazeWithGhostHouse :: Int -&gt; Int -&gt; Int -&gt; Maze
+mazeWithGhostHouse l a s = insertGhosHouse (generateMaze'' l a s) (replaceCorridor (ghostHouse l) (get5MiddleCorridor (generateMaze'' l a s)))
+    where y=(div (length (head (generateMaze'' l a s))) 2)-5
+</pre></div></div><div class="top"><p class="src"><a id="v:placeSideWalls" class="def">placeSideWalls</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; [<a href="Types.html#t:Corridor" title="Types">Corridor</a>] <a href="#v:placeSideWalls" class="selflink">#</a></p><div class="doc"><p>De seguida, o objetivo era fazer com que o labirinto ficasse cercado por paredes, e, para isso, foi criada a fun&#231;&#227;o <code><a href="Tarefa1.html#v:placeSideWalls" title="Tarefa1">placeSideWalls</a></code> que, dado um labirinto j&#225; com paredes no topo e na base, faz as substitui&#231;&#245;es nas laterais.</p><pre>placeSideWalls :: Maze -&gt; [Corridor]  
+placeSideWalls [] = []
+placeSideWalls mazeWithGhostHouse = ([Wall] ++ (init (tail (head mazeWithGhostHouse))) ++ [Wall]) : placeSideWalls (tail mazeWithGhostHouse)
+</pre></div></div><div class="top"><p class="src"><a id="v:mazeTunel" class="def">mazeTunel</a> :: <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> <a href="#v:mazeTunel" class="selflink">#</a></p><div class="doc"><p>O &#250;ltimo passo &#233; abrir um espa&#231;o de cada lado que, futuramente, funciona como t&#250;nel para o pacman.</p><pre>mazeTunel :: Maze -&gt; Maze
+mazeTunel placeSideWalls
+    | odd m = take (d) (placeSideWalls) ++ [[Empty] ++ (init (tail (placeSideWalls!!(d)))) ++ [Empty]] ++ drop (d+1) (placeSideWalls)
+    | otherwise = take (d-1) (placeSideWalls) ++ [[Empty] ++ (init (tail (placeSideWalls!!(d-1)))) ++ [Empty]] ++ [[Empty] ++ (init (tail (placeSideWalls!!(d)))) ++ [Empty]] ++ drop (d+1) (placeSideWalls)
+       where m= length placeSideWalls
+             d= (div m 2)
+</pre></div></div><div class="top"><p class="src"><a id="v:generateMaze" class="def">generateMaze</a> :: Int -&gt; Int -&gt; Int -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> <a href="#v:generateMaze" class="selflink">#</a></p><div class="doc"><p>Por fim, resta definir a fun&#231;&#227;o final que, dados 3 n&#250;meros inteiros (largura, altura e seed), devolve o labirinto j&#225; com todos os requisitos.</p><pre>generateMaze :: Int -&gt; Int -&gt; Int -&gt; Maze
+generateMaze l a s = mazeTunel (placeSideWalls (mazeWithGhostHouse l a s))
+</pre><h2>Exemplo de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>generateMaze 15 10 9
+</code></strong>[[#,#,#,#,#,#,#,#,#,#,#,#,#,#,#],[#,.,#,#,.,.,.,.,.,.,.,#,.,.,#],[#,#, , , , , , , , , , , ,.,#],[#,., ,#,#,#, , , ,#,#,#, ,.,#],[ ,., ,#, , , , , , , ,#, ,., ],[ ,#, ,#,#,#,#,#,#,#,#,#, ,#, ],[#,#, , , , , , , , , , , ,.,#],[#,.,.,.,.,.,#,.,.,#,.,.,.,#,#],[#,.,.,.,.,.,#,.,#,#,#,.,#,#,#],[#,#,#,#,#,#,#,#,#,#,#,#,#,#,#]]
+</pre></div></div><div class="top"><p class="src"><a id="v:printMazeFinal" class="def">printMazeFinal</a> :: Int -&gt; Int -&gt; Int -&gt; IO () <a href="#v:printMazeFinal" class="selflink">#</a></p><div class="doc"><p>A pr&#243;xima fun&#231;&#227;o faz quase o mesmo que a anterior, apenas com uma pequena diferen&#231;a. Neste caso, o labirinto &#233; dado j&#225; com a sua forma final.</p><p>(Mesmo n&#227;o tendo sido proposta a cria&#231;&#227;o desta fun&#231;&#227;o no enunciado, decidimos faz&#234;-la para os testes terem um aspeto mais agrad&#225;vel e facilitar o racioc&#237;nio.)</p><pre>printMazeFinal :: Int -&gt; Int -&gt; Int -&gt; IO ()
+printMazeFinal l a s = imprimeLabirinto (generateMaze l a s)
+</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>generateWall 15 10 9 (Usando o exemplo anterior)
+</code></strong>###############
+#.##.......#..#
+##           .#
+#. ###   ### .#
+ . #       # . 
+ # ######### # 
+##           .#
+#.....#..#...##
+#.....#.###.###
+###############
+</pre></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.23.0</p></div></body></html>

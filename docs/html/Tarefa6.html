@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Tarefa6</title><link href="linuwial.css" rel="stylesheet" type="text/css" title="Linuwial" /><link rel="stylesheet" type="text/css" href="quick-jump.css" /><link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" /><script src="haddock-bundle.min.js" async="async" type="text/javascript"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { processClass: "mathjax", ignoreClass: ".*" } });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script></head><body><div id="package-header"><span class="caption empty">&nbsp;</span><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul></div><div id="content"><div id="module-header"><table class="info"><tr><th valign="top">Copyright</th><td>Telmo Maciel &lt;a96569@alunos.uminho.pt&gt;;<br />Tiago Soares &lt;a97381@alunos.uminho.pt&gt;</td></tr><tr><th>Safe Haskell</th><td>None</td></tr></table><p class="caption">Tarefa6</p></div><div id="description"><p class="caption">Description</p><div class="doc"><h1>Introdu&#231;&#227;o</h1><p>A tarefa 6 &#233; quase como que um desafio para n&#243;s, nesta temos que tentar criar um bot, isto &#233;, um &quot;jogador&quot; capaz 
+de jogar sem qualquer tipo de intera&#231;&#227;o humana e tamb&#233;m que o mesmo tenha a maior inteligencia poss&#237;vel. </p><h1>Objetivos</h1><p>O objetivo desta fun&#231;&#227;o n&#227;o foi mais nada que implementar um rob&#244; que conseguisse jogar <em>Pacman</em> automaticamente.</p><p>O nosso pensamento para a realiza&#231;&#227;o desta tarefa foi o mesmo que usamos para a tarefa anterior, pegar nas coordenadas
+dos v&#225;rios jogadores e analisar a melhor op&#231;&#227;o a tomar tendo em conta esse fator. Ent&#227;o, primeiro de tudo precis&#225;vamos de
+saber qual era o fantasma que se encontrava mais perto do nosso pacman para, posteriormente, pensar no que fazer. Temos 3 
+possibilidades diferentes de rea&#231;&#227;o, ou o pacman fugia do fantasma caso ele tivesse em modo Normal, ou o pacman ia atr&#225;s 
+do fantasma para o tentar comer, ou tinha a possibilidade de se dirigir &#224; comida grande mais pr&#243;xima, isto &#233;, 
+n&#227;o tendo nenhum fantasma perto dele a colocar em perigo as suas vidas, este dirigia-se &#224; comida mais pr&#243;xima para, 
+posteriormente colocar os fantasmas em modo dead e ir atr&#225;s deles para os comer. </p><p>Para tal, ap&#243;s determinar qual o fantasma que se encontra mais perto do nosso pacman, fomos analisar as coordenadas dos
+dois jogadores e, depois, determinamos a jogada a efetuar consoante as posi&#231;&#245;es de cada um, isto &#233;, verificavamos as abcissas
+e ordenadas e tom&#225;vamos uma decis&#227;o para onde se ia movimentar o nosso pacman.</p><p>No caso de ele tentar ir comer a comida grande mais pr&#243;xima tomamos em conta o mesmo racioc&#237;nio, fomos obter as coordenadas
+da comida no labirinto original e, consequentemente implementamos uma fun&#231;&#227;o que analisava as coordenadas do pacman e da 
+comida e devolvia um movimento consoante a melhor solu&#231;&#227;o poss&#237;vel.</p><h1>Discuss&#227;o e Conclus&#227;o</h1><p>Infelizmente, temos no&#231;&#227;o que o nosso bot n&#227;o est&#225; perto do patamar perfeito, no entanto, tentamos sempre fazer o nosso
+melhor para que o mesmo ficasse da forma mais eficaz possivel tendo em conta as nossas aprendizagens e compet&#234;ncias. </p><p>Em conclus&#227;o, a realiza&#231;&#227;o desta tarefa teve tanta ou mais dificuldade que a tarefa 5, no entanto, fomos conseguindo 
+corrigir todos os erros que nos iam aparecendo, conseguimos concluir as nossas fun&#231;&#245;es e, por fim, implement&#225;-la num exemplo
+para v&#234;-la a correr.</p><p>Por fim, resta-nos dizer que este trabalho foi muito diferente do que estavamos &#224; espera pois cont&#225;vamos com coisas mais 
+simples, uma vez que nos encontramos apenas nos primeiros meses no mundo da programa&#231;&#227;o. No entanto, foi um trabalho que nos deu
+gosto de fazer pois expandimos o nosso conhecimento e abrimos os nossos horizontes em rela&#231;&#227;o ao mundo da programa&#231;&#227;o. 
+  Sabemos tamb&#233;m que este trabalho &#233; capaz de estar longe do perfeito, no entanto, fizemos sempre o nosso melhor e no final ficamos
+orgulhosos de tudo que fizemos. Este trabalho foi um grande desafio para n&#243;s j&#225; que nos p&#244;s a pensar em todas as solu&#231;&#245;es e alternativas
+das diversas fun&#231;&#245;es que fomos construindo mas, no final, olhamos para tr&#225;s e come&#231;amos a ter no&#231;&#227;o da vida de um programador e as 
+dificuldades que estes mesmos passam.</p></div></div><div id="synopsis"><details id="syn"><summary>Synopsis</summary><ul class="details-toggle" data-details-id="syn"><li class="src short"><a href="#v:distance">distance</a> :: <a href="Types.html#t:Coords" title="Types">Coords</a> -&gt; <a href="Types.html#t:Coords" title="Types">Coords</a> -&gt; Int</li><li class="src short"><a href="#v:coordsPacman">coordsPacman</a> :: [<a href="Types.html#t:Player" title="Types">Player</a>] -&gt; (Int, <a href="Types.html#t:Coords" title="Types">Coords</a>)</li><li class="src short"><a href="#v:coordsGhosts">coordsGhosts</a> :: [<a href="Types.html#t:Player" title="Types">Player</a>] -&gt; [(Int, <a href="Types.html#t:Coords" title="Types">Coords</a>)]</li><li class="src short"><a href="#v:getAllDistances">getAllDistances</a> :: (Int, <a href="Types.html#t:Coords" title="Types">Coords</a>) -&gt; [(Int, <a href="Types.html#t:Coords" title="Types">Coords</a>)] -&gt; [(Int, Int)]</li><li class="src short"><a href="#v:getMinimumDistance">getMinimumDistance</a> :: [(Int, Int)] -&gt; (Int, Int)</li><li class="src short"><a href="#v:getID">getID</a> :: (Int, Int) -&gt; Int</li><li class="src short"><a href="#v:findGhost">findGhost</a> :: Int -&gt; [<a href="Types.html#t:Player" title="Types">Player</a>] -&gt; <a href="Types.html#t:Player" title="Types">Player</a></li><li class="src short"><a href="#v:getNewMove">getNewMove</a> :: <a href="Types.html#t:Player" title="Types">Player</a> -&gt; <a href="Types.html#t:Player" title="Types">Player</a> -&gt; <a href="Types.html#t:State" title="Types">State</a> -&gt; <a href="Types.html#t:Play" title="Types">Play</a></li><li class="src short"><a href="#v:findFood">findFood</a> :: <a href="Types.html#t:Player" title="Types">Player</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Play" title="Types">Play</a></li><li class="src short"><a href="#v:auxFind">auxFind</a> :: <a href="Types.html#t:Player" title="Types">Player</a> -&gt; <a href="Types.html#t:Coords" title="Types">Coords</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Play" title="Types">Play</a></li><li class="src short"><a href="#v:getFoodCoords">getFoodCoords</a> :: Int -&gt; Int -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; [<a href="Types.html#t:Coords" title="Types">Coords</a>]</li><li class="src short"><a href="#v:auxFoodCorridor">auxFoodCorridor</a> :: Int -&gt; Int -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a> -&gt; [<a href="Types.html#t:Coords" title="Types">Coords</a>]</li><li class="src short"><a href="#v:getBestFood">getBestFood</a> :: <a href="Types.html#t:Player" title="Types">Player</a> -&gt; [<a href="Types.html#t:Coords" title="Types">Coords</a>] -&gt; <a href="Types.html#t:Coords" title="Types">Coords</a></li><li class="src short"><a href="#v:bot">bot</a> :: Int -&gt; <a href="Types.html#t:State" title="Types">State</a> -&gt; Maybe <a href="Types.html#t:Play" title="Types">Play</a></li></ul></details></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a id="v:distance" class="def">distance</a> :: <a href="Types.html#t:Coords" title="Types">Coords</a> -&gt; <a href="Types.html#t:Coords" title="Types">Coords</a> -&gt; Int <a href="#v:distance" class="selflink">#</a></p><div class="doc"><p>Fun&#231;&#227;o que nos d&#225; a dist&#226;ncia arredondada &#224;s unidades em fun&#231;&#227;o de um par de coordenadas.</p><pre>distance :: Coords -&gt; Coords -&gt; Int
+distance (x1, y1) (x2, y2) = round (sqrt (x*x + y*y))
+      where x = (fromIntegral x1) - (fromIntegral x2)
+            y = (fromIntegral y1) - (fromIntegral y2)
+</pre></div></div><div class="top"><p class="src"><a id="v:coordsPacman" class="def">coordsPacman</a> :: [<a href="Types.html#t:Player" title="Types">Player</a>] -&gt; (Int, <a href="Types.html#t:Coords" title="Types">Coords</a>) <a href="#v:coordsPacman" class="selflink">#</a></p><div class="doc"><p>Obt&#233;m um par do tipo (<em>ID</em>,<em>Coordenadas</em>) que nos da o id e as coordenadas do pacman</p><pre>coordsPacman :: [Player] -&gt; (Int,Coords)
+coordsPacman ms = (getPlayerID (whereIsPacman ms),(getPlayerCoords (whereIsPacman ms)))
+</pre></div></div><div class="top"><p class="src"><a id="v:coordsGhosts" class="def">coordsGhosts</a> :: [<a href="Types.html#t:Player" title="Types">Player</a>] -&gt; [(Int, <a href="Types.html#t:Coords" title="Types">Coords</a>)] <a href="#v:coordsGhosts" class="selflink">#</a></p><div class="doc"><p>Obt&#233;m uma lista de pares do tipo (<em>ID</em>,<em>Coordenadas</em>) que nos da os ids e as coordenadas de todos os fantasmas</p><pre>coordsGhosts :: [Player] -&gt; [(Int,Coords)]
+coordsGhosts [] = []
+coordsGhosts ms= ((getPlayerID (head (whereAreGhosts ms))),(getPlayerCoords (head (whereAreGhosts ms)))) : coordsGhosts (tail (whereAreGhosts ms))
+</pre></div></div><div class="top"><p class="src"><a id="v:getAllDistances" class="def">getAllDistances</a> :: (Int, <a href="Types.html#t:Coords" title="Types">Coords</a>) -&gt; [(Int, <a href="Types.html#t:Coords" title="Types">Coords</a>)] -&gt; [(Int, Int)] <a href="#v:getAllDistances" class="selflink">#</a></p><div class="doc"><p>Esta vai pegar nas coordenadas do pacman (do tipo (<em>ID</em>,<em>Coords</em>)) e no conjunto de coordenadas dos fantasmas (<em>ID</em>,<em>Coords</em>) e vai devolver um par (<em>ID</em>,<em>Distancia</em>)
+em que o ID vai ser o ID do pacman e a distancia &#233; a distancia do pacman a esse fantasma (arredondada &#224;s unidades).</p><pre>getAllDistances :: (Int,Coords) -&gt; [(Int,Coords)] -&gt; [(Int,Int)]
+getAllDistances _ [] = []
+getAllDistances (a,b) ((h,t):tail) = (h, (distance b t)): getAllDistances (a,b) tail
+</pre></div></div><div class="top"><p class="src"><a id="v:getMinimumDistance" class="def">getMinimumDistance</a> :: [(Int, Int)] -&gt; (Int, Int) <a href="#v:getMinimumDistance" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o vai pegar no resultado da anterior e vai verificar qual &#233; o fantasma que se encontra mais pr&#243;ximo do nosso jogador, devolvenvo um par do tipo
+(<em>ID</em>,<em>Distancia</em>).</p><pre>getMinimumDistance :: [(Int,Int)] -&gt; (Int,Int)
+getMinimumDistance [a]= a
+getMinimumDistance ((a,b):(x,y):t)
+   | b&lt;y = getMinimumDistance ((a,b):t)
+   | otherwise = getMinimumDistance ((x,y):t)
+</pre></div></div><div class="top"><p class="src"><a id="v:getID" class="def">getID</a> :: (Int, Int) -&gt; Int <a href="#v:getID" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o apenas nos da um ID recebendo um par (<em>ID</em>,<em>Distancia</em>).</p><pre>getID :: (Int,Int) -&gt; Int
+getID (x,y)= x
+</pre></div></div><div class="top"><p class="src"><a id="v:findGhost" class="def">findGhost</a> :: Int -&gt; [<a href="Types.html#t:Player" title="Types">Player</a>] -&gt; <a href="Types.html#t:Player" title="Types">Player</a> <a href="#v:findGhost" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o vai receber um ID do fantasma e vai &#224; lista de jogadores procurar o fantasma.</p><pre>findGhost :: Int -&gt; [Player] -&gt; Player
+findGhost id (h:t)
+  | id== getPlayerID h = h
+  | otherwise= findGhost id t
+</pre></div></div><div class="top"><p class="src"><a id="v:getNewMove" class="def">getNewMove</a> :: <a href="Types.html#t:Player" title="Types">Player</a> -&gt; <a href="Types.html#t:Player" title="Types">Player</a> -&gt; <a href="Types.html#t:State" title="Types">State</a> -&gt; <a href="Types.html#t:Play" title="Types">Play</a> <a href="#v:getNewMove" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o vai receber o nosso jogador e o fantasma que se encontra mais pr&#243;ximo dele e, analisando as duas coordenadas
+vai devolver a melhor jogada a tomar tendo em conta se o fantasma se encontra no modo Dead ou Alive. Pode tamb&#233;m, no caso de 
+n&#227;o se encontrar nenhum fantasma proximo do nosso jogador, chamar a fun&#231;&#227;o que nos vai levar atr&#225;s de uma comida grande.</p><pre>getNewMove :: Player -&gt; Player -&gt; State -&gt; Play
+getNewMove (Pacman(PacState (i,(b,c), x, y,z,l) h f j)) (Ghost(GhoState (i1,(b1,c1), x1, y1,z1,l1) Dead)) (State m ms lvl)
+         | y==R &amp;&amp; getPiece (b,c+1) m == Wall = if b&lt;b1 then (Move i D) else (Move i U) 
+         | y==L &amp;&amp; getPiece (b,c-1) m == Wall = if b&lt;b1 then (Move i D) else (Move i U) 
+         | y==U &amp;&amp; getPiece (b-1,c) m == Wall = if c&lt;c1 then (Move i R) else (Move i L) 
+         | y==D &amp;&amp; getPiece (b+1,c) m == Wall = if c&lt;c1 then (Move i R) else (Move i L) 
+         | y==R &amp;&amp; getPiece (b,c+1) m == Wall = if b&gt;b1 then (Move i U) else (Move i D) 
+         | y==L &amp;&amp; getPiece (b,c-1) m == Wall = if b&gt;b1 then (Move i U) else (Move i D) 
+         | y==U &amp;&amp; getPiece (b-1,c) m == Wall = if c&gt;c1 then (Move i L) else (Move i R) 
+         | y==D &amp;&amp; getPiece (b+1,c) m == Wall = if c&gt;c1 then (Move i L) else (Move i R) 
+         | c==c1 &amp;&amp; b&lt;b1 = (Move i D) 
+         | c==c1 &amp;&amp; b&gt;b1 = (Move i U)  
+         | b==b1 &amp;&amp; c&lt;c1 = (Move i R)  
+         | b==b1 &amp;&amp; c&gt;c1 = (Move i L) 
+         | y==R = (Move i R)
+         | y==L = (Move i L)
+         | y==U = (Move i U) 
+         | y==D = (Move i D)
+getNewMove (Pacman(PacState (i,(b,c), x, y,z,l) h f j)) (Ghost(GhoState (i1,(b1,c1), x1, y1,z1,l1) Alive)) (State m ms lvl)
+         | distance (b,c) (b1,c1) <a href="6">&amp;&amp; length (getFoodCoords 0 0 m)</a> 0 = findFood (Pacman(PacState (i,(b,c), x, y,z,l) h f j)) m
+         | y==R &amp;&amp; getPiece (b,c+1) m == Wall = if b&lt;b1 then (Move i U) else (Move i D) 
+         | y==L &amp;&amp; getPiece (b,c-1) m == Wall = if b&lt;b1 then (Move i U) else (Move i D) 
+         | y==U &amp;&amp; getPiece (b-1,c) m == Wall = if c&lt;c1 then (Move i L) else (Move i R) 
+         | y==D &amp;&amp; getPiece (b+1,c) m == Wall = if c&lt;c1 then (Move i L) else (Move i R) 
+         | y==R &amp;&amp; getPiece (b,c+1) m == Wall = if b&gt;b1 then (Move i D) else (Move i U) 
+         | y==L &amp;&amp; getPiece (b,c-1) m == Wall = if b&gt;b1 then (Move i D) else (Move i U) 
+         | y==U &amp;&amp; getPiece (b-1,c) m == Wall = if c&gt;c1 then (Move i R) else (Move i L) 
+         | y==D &amp;&amp; getPiece (b+1,c) m == Wall = if c&gt;c1 then (Move i R) else (Move i L) 
+         | c==c1 &amp;&amp; b&lt;b1 = (Move i U) 
+         | c==c1 &amp;&amp; b&gt;b1 = (Move i D)  
+         | b==b1 &amp;&amp; c&lt;c1 = (Move i L)  
+         | b==b1 &amp;&amp; c&gt;c1 = (Move i R) 
+         | y==R = (Move i R)
+         | y==L = (Move i L)
+         | y==U = (Move i U) 
+         | y==D = (Move i D)
+</pre></div></div><div class="top"><p class="src"><a id="v:findFood" class="def">findFood</a> :: <a href="Types.html#t:Player" title="Types">Player</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Play" title="Types">Play</a> <a href="#v:findFood" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o vai ser o elo de liga&#231;&#227;o da fun&#231;&#227;o final com a fun&#231;&#227;o <code><a href="Tarefa6.html#v:auxFind" title="Tarefa6">auxFind</a></code> uma vez que esta fun&#231;ao vai dividir
+os argumentos de forma a que a pr&#243;xima consiga efetuar o que n&#243;s queremos.</p><pre>findFood :: Player -&gt; Maze -&gt; Play
+findFood pac@(Pacman(PacState (i,(b,c), x, y,z,l) h f j)) m= auxFind pac (getBestFood pac (getFoodCoords 0 0 m)) m
+</pre></div></div><div class="top"><p class="src"><a id="v:auxFind" class="def">auxFind</a> :: <a href="Types.html#t:Player" title="Types">Player</a> -&gt; <a href="Types.html#t:Coords" title="Types">Coords</a> -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; <a href="Types.html#t:Play" title="Types">Play</a> <a href="#v:auxFind" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o vai receber um pacman, as coordenadas da comida mais pr&#243;xima e o labirinto e, consequentemente vai devolver
+a melhor jogada a tomar para ir comer a comida.</p><pre>auxFind :: Player -&gt; Coords -&gt; Maze -&gt; Play
+auxFind (Pacman(PacState (i,(b,c), x, y,z,l) h f j)) (x1,y1) m
+   | y==R &amp;&amp; getPiece (b,c+1) m == Wall = if b&lt;x1 then (Move i D) else (Move i U) 
+   | y==L &amp;&amp; getPiece (b,c-1) m == Wall = if b&lt;x1 then (Move i D) else (Move i U) 
+   | y==U &amp;&amp; getPiece (b-1,c) m == Wall = if c&lt;y1 then (Move i R) else (Move i L) 
+   | y==D &amp;&amp; getPiece (b+1,c) m == Wall = if c&lt;y1 then (Move i R) else (Move i L) 
+   | y==R &amp;&amp; getPiece (b,c+1) m == Wall = if b&gt;x1 then (Move i U) else (Move i D) 
+   | y==L &amp;&amp; getPiece (b,c-1) m == Wall = if b&gt;x1 then (Move i U) else (Move i D) 
+   | y==U &amp;&amp; getPiece (b-1,c) m == Wall = if c&gt;y1 then (Move i L) else (Move i R) 
+   | y==D &amp;&amp; getPiece (b+1,c) m == Wall = if c&gt;y1 then (Move i L) else (Move i R) 
+   | c==y1 &amp;&amp; b&lt;x1 = (Move i D) 
+   | c==y1 &amp;&amp; b&gt;x1 = (Move i U)  
+   | b==x1 &amp;&amp; c&lt;y1 = (Move i R)  
+   | b==x1 &amp;&amp; c&gt;y1 = (Move i L) 
+   | y==R = (Move i R)
+   | y==L = (Move i L)
+   | y==U = (Move i U) 
+   | y==D = (Move i D)
+   | y==Null = (Move i D) 
+</pre></div></div><div class="top"><p class="src"><a id="v:getFoodCoords" class="def">getFoodCoords</a> :: Int -&gt; Int -&gt; <a href="Types.html#t:Maze" title="Types">Maze</a> -&gt; [<a href="Types.html#t:Coords" title="Types">Coords</a>] <a href="#v:getFoodCoords" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o vai receber dois contadores (inicialmente s&#227;o colocados a 0) e um labirinto e consequentemente devolve 
+as coordenadas de todas as comidas grandes.</p><pre>getFoodCoords :: Int -&gt; Int -&gt; Maze -&gt; [Coords]
+getFoodCoords n y [] = []
+getFoodCoords n y (h:t) = auxFoodCorridor n y h ++ getFoodCoords (n+1) y t
+
+auxFoodCorridor :: Int -&gt; Int -&gt; Corridor -&gt; [Coords]
+auxFoodCorridor n y [] = []
+auxFoodCorridor n y (h:t)
+  | h==Food Big = (n,y): auxFoodCorridor n (y+1) t
+  | otherwise= auxFoodCorridor n (y+1) t
+</pre></div></div><div class="top"><p class="src"><a id="v:auxFoodCorridor" class="def">auxFoodCorridor</a> :: Int -&gt; Int -&gt; <a href="Types.html#t:Corridor" title="Types">Corridor</a> -&gt; [<a href="Types.html#t:Coords" title="Types">Coords</a>] <a href="#v:auxFoodCorridor" class="selflink">#</a></p></div><div class="top"><p class="src"><a id="v:getBestFood" class="def">getBestFood</a> :: <a href="Types.html#t:Player" title="Types">Player</a> -&gt; [<a href="Types.html#t:Coords" title="Types">Coords</a>] -&gt; <a href="Types.html#t:Coords" title="Types">Coords</a> <a href="#v:getBestFood" class="selflink">#</a></p><div class="doc"><p>Esta fun&#231;&#227;o vai receber o nosso jogador do tipo pacman e a lista das coordenadas das comidas grandes e, depois, vai
+verificar qual &#233; a comida que se encontra mais perto do nosso jogador.</p><pre>getBestFood :: Player -&gt; [Coords] -&gt; Coords
+getBestFood (Pacman(PacState (i,(b,c), x, y,z,l) h f j)) (h1:h2:t)
+  | distance (b,c) h1 &lt; distance (b,c) h2 = h1
+  | otherwise= getBestFood (Pacman(PacState (i,(b,c), x, y,z,l) h f j)) (h2:t)
+</pre></div></div><div class="top"><p class="src"><a id="v:bot" class="def">bot</a> :: Int -&gt; <a href="Types.html#t:State" title="Types">State</a> -&gt; Maybe <a href="Types.html#t:Play" title="Types">Play</a> <a href="#v:bot" class="selflink">#</a></p><div class="doc"><p>Por fim, esta fun&#231;&#227;o vai ser a fun&#231;&#227;o que dado um ID e um estado vai devolver a melhor jogada a tomar tendo em conta
+todas as circunst&#226;ncias.</p><pre>bot :: Int -&gt; State -&gt; Maybe Play
+bot x s@(State m ms l) = Just (getNewMove (whereIsPacman ms) (findGhost (getID (getMinimumDistance (getAllDistances (coordsPacman ms) (coordsGhosts ms)))) (whereAreGhosts ms)) (State (updateMaze (whereIsPacman ms) m) ms l))
+</pre></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.23.0</p></div></body></html>
